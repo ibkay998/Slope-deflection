@@ -1,7 +1,7 @@
-import numpy as np
-A = np.array([[5, 3], [1, 2]])
-B = np.array([40, 18])
-C = np.linalg.solve(A, B)
+# import numpy as np
+# A = np.array([[5, 3], [1, 2]])
+# B = np.array([40, 18])
+# C = np.linalg.solve(A, B)
 
 
 class SlopeDeflectionMethod(object):
