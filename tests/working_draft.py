@@ -1,8 +1,15 @@
 # from sloper_deflection import SlopeDeflectionMethod
 import typing
+import enum
 
 
-def determine_result(dataset: typing.List[typing.Any]):
+class LoadType(enum.Enum):
+    NONE = "none"
+    POINT = "point"
+    UDL = "udl"
+
+
+def determine_result(dataset: typing.List[typing.Any], decimal_places: int = None):
     result = get_user_input(dataset)
     a, b, c, d = result
     i1 = 1
@@ -29,6 +36,9 @@ def determine_result(dataset: typing.List[typing.Any]):
     print(MBA)
     print(MBC)
     print(MCB)
+    to_decimal_places = lambda x: float("%.{}f".format(decimal_places) % x)
+    if decimal_places:
+        return tuple([to_decimal_places(x) for x in [MAB, MBA, MBC, MCB]])
     return MAB, MBA, MBC, MCB
 
 
@@ -39,18 +49,19 @@ def get_user_input(data_input: typing.List[typing.Any]):
     return [*first_tuple_items, *last_tuple_items]
 
 
-def get_FEM(load_type=None, span=None, magnitude=None):
-    if load_type=="point":
+def get_FEM(load_type: LoadType = None, span=None, magnitude=None):
+    if load_type == LoadType.POINT:
         FEM_point = (span * magnitude) / 8
-    elif load_type=="udl":
+    elif load_type == LoadType.UDL:
         FEM_point = (span * magnitude) / 16
-    elif load_type =="vdl":
+    elif load_type == "vdl":
         FEM_point = (span * magnitude) / 16
     elif load_type == "combination":
         FEM_point == do_Combination()
     return FEM_point, span
 
+
 def do_Combination(question=None, load_type=None, span=None, magnitude=None):
     question = input("How many loads on  span: ")
     for i in range(question):
-        type_of_load=input("Enter the type of load")
+        type_of_load = input("Enter the type of load")
