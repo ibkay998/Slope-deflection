@@ -32,7 +32,7 @@ class SlopeDeflectionMethod(object):
     # def get_fem_udl_notfullspan(self):
     #     return pass
 
-    def get_type_of_support():
+    def get_type_of_support(self,):
         SA=input("Enter the type of support 1 for fixed 2 for hinge 3e for rollers:")
         SB=input("Enter the type of support 1 for fixed 2 for hinge 3e for rollers:")
         SC=input("Enter the type of support 1 for fixed 2 for hinge 3e for rollers:")
@@ -109,7 +109,7 @@ class SlopeDeflectionMethod(object):
         MCB=((2*E*i2)/d)*((2*oC)+oB-3*deflection)+b
         
 
-        return MAB,MBA,MBC,MCB
+        return MAB,MBA,MBC,MCB,a,b,c,d
 
 
 jeff = SlopeDeflectionMethod("Enter your Span")
