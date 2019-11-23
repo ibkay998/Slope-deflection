@@ -27,3 +27,12 @@ def test_transform_input():
         print(i)
         assert get_user_input(i[0]) == i[1]
 
+
+def test_single_use_case():
+    dataset = [
+        {"span": 6, "magnitude": 10, "load_type": "point"},
+        {"span": 6, "magnitude": 8, "load_type": "point"},
+    ]
+    result = get_user_input(dataset)
+    assert result == [7.5, 6.0, 6, 6]
+
