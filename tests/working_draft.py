@@ -40,5 +40,17 @@ def get_user_input(data_input: typing.List[typing.Any]):
 
 
 def get_FEM(load_type=None, span=None, magnitude=None):
-    FEM_point = (span * magnitude) / 8
+    if load_type=="point":
+        FEM_point = (span * magnitude) / 8
+    elif load_type=="udl":
+        FEM_point = (span * magnitude) / 16
+    elif load_type =="vdl":
+        FEM_point = (span * magnitude) / 16
+    elif load_type == "combination":
+        FEM_point == do_Combination()
     return FEM_point, span
+
+def do_Combination(question=None, load_type=None, span=None, magnitude=None):
+    question = input("How many loads on  span: ")
+    for i in range(question):
+        type_of_load=input("Enter the type of load")
